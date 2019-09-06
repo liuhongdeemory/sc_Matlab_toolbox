@@ -1,20 +1,20 @@
 clear;
 clc; close all;
 disp('load data.')
-% load ('matrix_scRNAE_GEOD_83139.mat');
- load ('matrix_scRNA.mat');
+load ('matrix_scRNAE_GEOD_83139.mat');
+% load ('matrix_scRNA.mat');
 X=E.M;gene=E.rows; % original data
 isplot=1;
 
 disp('Scaling for each cell.')
 cutoff=0.1;
 figure1=figure('color','w');
-% [M,w]=scale_normalization(X,cutoff,isplot); % M is the scaled X; and w is factor;
+[M,w]=scale_normalization(X,cutoff,isplot); % M is the scaled X; and w is factor;
 M=X;
 
 disp('filtering genes.')
 cut=0.4;
-[Sort_M Sort_gene]=sort_gene_by_percent(M,gene,cut);
+[Sort_M Sort_gene]=sort_gene_by_percent(M,gene,cut); % you can slip this function
 
 disp('Find highly variable genes.')
 figure1=figure('color','w');
